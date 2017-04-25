@@ -1,8 +1,6 @@
-package tests;
-
-import model.Actors;
-import model.Movie;
-import services.IMDBSearchService;
+import com.william.model.Actors;
+import com.william.model.Movie;
+import com.william.services.IMDBSearchService;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package model;
+package com.william.model;
 
 import java.util.List;
 

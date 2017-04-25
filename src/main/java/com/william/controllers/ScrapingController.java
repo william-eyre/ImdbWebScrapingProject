@@ -1,11 +1,13 @@
-package hello;
+package com.william.controllers;
 
 import com.google.gson.Gson;
+import com.william.hello.TitleSearch;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import services.IMDBSearchService;
+import com.william.services.IMDBSearchService;
 
 import java.io.IOException;
 
@@ -17,11 +19,17 @@ import java.io.IOException;
 @Controller
 public class ScrapingController {
 
-    // dependency injection / spring autowiring
-    private IMDBSearchService search = new IMDBSearchService();
-    // race conditions, thread safe and deadlock
-    private Gson gson = new Gson();
 
+    // dependency injection / spring autowiring
+    private IMDBSearchService search;
+    // race conditions, thread safe and deadlock
+    private Gson jsonMaker;
+
+    @Autowired
+    public ScrapingController(Gson jsonMaker, IMDBSearchService search) {
+        this.jsonMaker = jsonMaker;
+        this.search = search;
+    }
 
 
     @RequestMapping("/")
@@ -36,7 +44,7 @@ public class ScrapingController {
         String json = null;
         // log.info(help ful info)
         try {
-            json = gson.toJson(search.searchForTitle(titleSearch.getContent()));
+            json = jsonMaker.toJson(search.searchForTitle(titleSearch.getContent()));
         } catch (IOException e) {
             e.printStackTrace();
             //console out or console error

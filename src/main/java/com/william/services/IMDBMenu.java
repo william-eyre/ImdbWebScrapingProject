@@ -1,10 +1,12 @@
-package services;
+package com.william.services;
 
-import model.Movie;
+import com.william.model.Movie;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
+@Component
 public class IMDBMenu {
 
     public String title;
