@@ -1,10 +1,8 @@
-package tests;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.Assert;
 import org.junit.Test;
-import services.IMDBSearchService;
+import com.william.services.IMDBSearchService;
 
 import java.io.*;
 import java.util.Objects;

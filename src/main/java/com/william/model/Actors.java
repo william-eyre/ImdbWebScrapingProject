@@ -1,4 +1,4 @@
-package model;
+package com.william.model;
 
 public class Actors{
 

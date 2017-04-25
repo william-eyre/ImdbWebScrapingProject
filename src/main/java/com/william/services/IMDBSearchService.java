@@ -1,17 +1,17 @@
-package services;
+package com.william.services;
 
-import model.Actors;
-import model.Movie;
+import com.william.model.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class IMDBSearchService implements ISearch{
 
 //    Interface myName;
