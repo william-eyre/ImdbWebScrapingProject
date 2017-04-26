@@ -14,12 +14,6 @@ import java.util.List;
 @Component
 public class IMDBSearchService implements ISearch{
 
-//    Interface myName;
-//
-//    public IMDBSearchService(Interface type) {
-//        myName = type;
-//    }
-
     @Override
     public List<Movie> searchForTitle(String searchTerm) throws IOException {
 
@@ -66,11 +60,13 @@ public class IMDBSearchService implements ISearch{
         String title = titleWrapper.select(".title_bar_wrapper h1").text();
         String rating = titleWrapper.select(".ratingValue").text();
         String summary = titleWrapper.select(".summary_text").text();
+        String duration = titleWrapper.select(".subtext time").text();
         String director = titleWrapper.select(".plot_summary .credit_summary_item a").first().text();
 
         m.setTitle(title);
         m.setRating(rating);
         m.setSummary(summary);
+        m.setDuration(duration);
         m.setDirector(director);
         m.setActors(processMovieActors(doc));
 
