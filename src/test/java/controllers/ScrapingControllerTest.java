@@ -5,4 +5,4 @@ package controllers;
  */
 public class ScrapingControllerTest {
 
-}
+    }
