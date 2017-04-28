@@ -1,7 +1,7 @@
 package com.william.controllers;
 
 import com.google.gson.Gson;
-import com.william.hello.TitleSearch;
+import com.william.model.TitleSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +19,7 @@ import java.io.IOException;
 @Controller
 public class ScrapingController {
 
-
-    // dependency injection / spring autowiring
     private IMDBSearchService search;
-    // race conditions, thread safe and deadlock
     private Gson jsonMaker;
 
     @Autowired
@@ -30,7 +27,6 @@ public class ScrapingController {
         this.jsonMaker = jsonMaker;
         this.search = search;
     }
-
 
     @RequestMapping("/")
     public String home(Model model) {

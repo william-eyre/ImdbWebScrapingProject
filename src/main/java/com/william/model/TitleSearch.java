@@ -1,4 +1,4 @@
-package com.william.hello;
+package com.william.model;
 
 public class TitleSearch {
 
