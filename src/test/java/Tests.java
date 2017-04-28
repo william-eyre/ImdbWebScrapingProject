@@ -1,7 +1,8 @@
+import com.william.model.Movie;
+import com.william.services.IMDBSearchService;
 import org.junit.Assert;
 import org.junit.Test;
-import com.william.model.*;
-import com.william.services.*;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -9,8 +10,10 @@ import java.util.List;
  * Created by william.eyre on 25/04/2017.
  */
 public class Tests {
+
     @Test
     public void workingTitle1() throws IOException {
+
         IMDBSearchService workingTitle1 = new IMDBSearchService();
         List<Movie> title1 = workingTitle1.searchForTitle("Star wars");
 
@@ -31,6 +34,10 @@ public class Tests {
         Movie movie2 = title2.get(0);
         Assert.assertEquals(movie2.getTitle(), "The Dark Knight (2008)");
         Assert.assertEquals(movie2.getRating(), "9.0/10");
+        Assert.assertEquals(movie2.getSummary(), "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the Dark Knight must come to terms with one of the greatest psychological tests of his ability to fight injustice.");
+        Assert.assertEquals(movie2.getDirector(), "Christopher Nolan");
+        Assert.assertEquals(movie2.getDuration(), "2h 32min");
+
     }
 
     @Test

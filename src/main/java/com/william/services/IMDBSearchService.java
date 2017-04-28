@@ -1,6 +1,7 @@
 package com.william.services;
 
-import com.william.model.*;
+import com.william.model.Actors;
+import com.william.model.Movie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class IMDBSearchService implements ISearch{
@@ -31,6 +33,12 @@ public class IMDBSearchService implements ISearch{
         /* loops over list of movies and gets the first 5 results. */
         Elements rows = page.select("table.findList tr");
         int y = 0;
+
+        // Consider
+        rows.forEach(row -> {
+            // String href = ...
+        });
+
         for(Element row : rows) {
             String href = row.select(".result_text a").attr("href");
             Movie myMovie = processMoviePage(href);
@@ -57,11 +65,22 @@ public class IMDBSearchService implements ISearch{
 
 
         Elements titleWrapper = doc.select("body");
-        String title = titleWrapper.select(".title_bar_wrapper h1").text();
-        String rating = titleWrapper.select(".ratingValue").text();
-        String summary = titleWrapper.select(".summary_text").text();
-        String duration = titleWrapper.select(".subtext time").text();
-        String director = titleWrapper.select(".plot_summary .credit_summary_item a").first().text();
+
+
+        String title = Optional.ofNullable(titleWrapper.select(".title_bar_wrapper h1"))
+                .map(Elements::text).orElse("Unknown Title");
+
+        String rating = Optional.ofNullable(titleWrapper.select(".ratingValue"))
+                .map(Elements::text).orElse("Unknown Rating");
+
+        String summary = Optional.ofNullable(titleWrapper.select(".summary_text"))
+                .map(Elements::text).orElse("Unknown Summary");
+
+        String duration = Optional.ofNullable(titleWrapper.select(".subtext time"))
+                .map(Elements::text).orElse("Unknown Duration");
+
+        String director = Optional.ofNullable(titleWrapper.select(".plot_summary .credit_summary_item a"))
+                .map(Elements::text).orElse("Unknown Director");
 
         m.setTitle(title);
         m.setRating(rating);
