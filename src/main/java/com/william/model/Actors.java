@@ -4,9 +4,6 @@ public class Actors{
 
     private String name;
     private String character;
-    private String nameURL;
-    private String characterURL;
-
 
     public String getName() {
         return name;
@@ -23,22 +20,5 @@ public class Actors{
     public void setCharacter(String newCharacter) {
         character = newCharacter;
     }
-
-    public String getNameURL() {
-        return nameURL;
-    }
-
-    public void setNameURL(String newNameURL) {
-        nameURL = newNameURL;
-    }
-
-    public String getCharacterURL() {
-        return characterURL;
-    }
-
-    public void setCharacterURL(String newCharacterURL) {
-        characterURL = newCharacterURL;
-    }
-
 
 }

@@ -1,5 +1,8 @@
 package com.william.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TitleSearch {
 
     private String content;

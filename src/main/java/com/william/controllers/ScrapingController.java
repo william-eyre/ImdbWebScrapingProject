@@ -1,13 +1,13 @@
 package com.william.controllers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.william.model.TitleSearch;
+import com.william.services.IMDBSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.william.services.IMDBSearchService;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -24,50 +24,27 @@ public class ScrapingController {
 
     @Autowired
     public ScrapingController(Gson jsonMaker, IMDBSearchService search) {
-        this.jsonMaker = jsonMaker;
+        this.jsonMaker = new GsonBuilder().setPrettyPrinting().create(); // .setPrettyPrinting makes the Json output more readable.
         this.search = search;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("titleSearch", new TitleSearch());
         return "Greeting";
     }
 
-    @RequestMapping("/ImdbConnect")
-    public String imdbConnect(@ModelAttribute TitleSearch titleSearch, Model model) {
-        // log.debug("got here")
+
+    @PostMapping(value = "/ImdbConnect", produces = "application/json") // tells the web page that it will be receiving a Json response.
+    @ResponseBody
+    public String imdbConnect(@ModelAttribute TitleSearch titleSearch) {
         String json = null;
-        // log.info(help ful info)
         try {
-            json = jsonMaker.toJson(search.searchForTitle(titleSearch.getContent()));
+           json = jsonMaker.toJson(search.searchForTitle(titleSearch.getContent()));
         } catch (IOException e) {
             e.printStackTrace();
-            //console out or console error
-            // use log4j log.error(e)
         }
-        model.addAttribute("json", json);
-        return "result";
+        return json;
     }
-
-//    @RequestMapping("/web") // maps the HTTP request to the greeting method
-//    public String web(Model model) {
-//
-//        Gson gson = new Gson();
-//
-//        JsonReader reader = null;
-//        try { // reads the local Json file created
-//            reader = new JsonReader(new FileReader("/Users/william.eyre/Documents/work/code/java/springMvcBasics/film.json"));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // creates an array of the Movie object
-//        Movie[] movies = gson.fromJson(reader, Movie[].class);
-//        model.addAttribute("movies", movies);
-//
-//        return "web";
-//    }
-
 
 }
