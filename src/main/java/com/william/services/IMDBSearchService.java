@@ -89,17 +89,6 @@ public class IMDBSearchService implements ISearch{
         m.setDirector(director);
         m.setActors(processMovieActors(doc));
 
-//        int limit = 40;
-//
-//        for (int start = 0; start <= summary.length(); start += limit) {
-//            int end = start + limit;
-//            if (end >= summary.length()) {
-//                end = summary.length();
-//            }
-//            String str = summary.substring(start, end);
-//            System.out.println(str);
-//        }
-
         return m;
     }
 

@@ -12,7 +12,6 @@ public class Movie {
     private String rating;
     private String summary;
     private String director;
-    private String producer;
     private String duration;
 
 
@@ -65,14 +64,6 @@ public class Movie {
 
     public void setDirector(String newDirector) {
         director = newDirector;
-    }
-
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String newProducer) {
-        producer = newProducer;
     }
 
 }
