@@ -1,6 +1,6 @@
 package com.william.services;
 
-import com.william.model.Actors;
+import com.william.model.Actor;
 import com.william.model.Movie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -92,12 +92,12 @@ public class IMDBSearchService implements ISearch{
         return m;
     }
 
-    private List<Actors> processMovieActors(Document doc) throws IOException {
+    private List<Actor> processMovieActors(Document doc) throws IOException {
 
-        List<Actors> actorsList = new ArrayList<Actors>();
+        List<Actor> actorsList = new ArrayList<Actor>();
 
         for(Element row : doc.select("table.cast_list tr")) {
-            Actors a = new Actors();
+            Actor a = new Actor();
 
             String actor = row.select(".itemprop a").text();
             String character = row.select(".character").text();

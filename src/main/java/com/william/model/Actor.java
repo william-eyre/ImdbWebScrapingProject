@@ -1,6 +1,6 @@
 package com.william.model;
 
-public class Actors{
+public class Actor {
 
     private String name;
     private String character;

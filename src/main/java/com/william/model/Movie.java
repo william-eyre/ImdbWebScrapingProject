@@ -16,9 +16,9 @@ public class Movie {
 
 
 
-    public List<Actors> actors;
+    public List<Actor> actors;
 
-    public List<Actors> getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
@@ -30,7 +30,7 @@ public class Movie {
         this.duration = duration;
     }
 
-    public void setActors(List<Actors> actors) {
+    public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 

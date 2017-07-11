@@ -1,4 +1,4 @@
-import com.william.model.Actors;
+import com.william.model.Actor;
 import com.william.model.Movie;
 import com.william.services.IMDBSearchService;
 
@@ -18,7 +18,7 @@ public class SimpleTest {
             System.out.println();
             System.out.println("Summary:\n" + m.getSummary());
             System.out.println();
-            for (Actors a : m.getActors()) {
+            for (Actor a : m.getActors()) {
                 System.out.println("Actor: " + a.getName() + "\t...\t Character Played: " + a.getCharacter());
             }
             System.out.println();
